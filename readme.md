@@ -2,8 +2,8 @@
 
 This is a Python package for many-body approximation and its-based low-rank approximation that covers the following papers:
 
-- Many-body approximation for non-negative tensors (Neurips2023) 
-- Deformed many-body approximation for non-negative tensors (AISTATS2026)
+- Many-body approximation for non-negative tensors (Neurips2023) [[Paper]](https://neurips.cc/virtual/2023/poster/72780) [[Slide]](https://nips.cc/media/neurips-2023/Slides/72780.pdf)
+- Deformed many-body approximation for non-negative tensors (AISTATS2026) [[Paper]] [[Slide]](https://speakerdeck.com/gkazunii/tensor-factorization-meets-deformed-information-geometry-convex-relaxation-under-deformed-algebra)
 
 Our code works on Python 3.12.7 with the required packages:
 
