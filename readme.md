@@ -58,6 +58,9 @@ $$
 
 respectvliy. Thus, the deformed many-body approximation has no initial-value dependence. Again, the $\chi$-divergence recovers the KL-divergence if $\chi(t)=t$. The implementation of the deformed logarithm and $\chi$-divergence can be found in `chi_logexp.py` and `divergecen.py`.
 
+While the KL-divergence-based tensor decomposition often offers global optimality, its generalization to other Bregman divergences was uncharted. If we simply replace the objective with another Bregman divergence, the non-convex optimziation is required. The key idea to ensure global optimality is to distort the coordinate system to make the set of tensors flat, replacing the standard product with deforme prodcut as seen below. More details can be found in our paper. 
+
+<img width="1214" height="608" alt="Image" src="https://github.com/user-attachments/assets/9b57f3e2-799a-4c88-bd54-501343ece653" />
 
 # Dual coordinate system for non-negative tensors
 
@@ -95,7 +98,7 @@ $$
 P_{ijkl} = \exp_{\chi}\big( \sum_{i'=1}^{i} \sum_{j'=1}^{j} \sum_{k'=1}^{k} \sum_{l'=1}^{l} \theta_{i'j'k'l'} \big), \quad \quad \eta_{ijkl} = \sum_{i'=i}^I\sum_{j'=j}^J\sum_{k'=k}^K\sum_{l'=l}^L \tilde{\chi}[P_{i'j'k'l'}],
 $$
 
-where the deformed exponential function $\exp_{\chi}$ is the inverse function of the deformed logarithm function `\log_{\chi}` and we assume that the tensor size of P is $I \times J  \times K  \times L$. 
+where the deformed exponential function $\exp_{\chi}$ is the inverse function of the deformed logarithm function $\log_{\chi}$ and we assume that the tensor size of P is $I \times J  \times K  \times L$. 
 
 Our algorithm performs tensor decomposition by leveraging the theta and eta representations of the tensor, as shown below.
 
