@@ -116,12 +116,12 @@ Then, its three-body approximation can be given as follows:
 from mproject import MBA
 body = 3
 Q, theta, eta, his = MBA(P, body, lr_search=True, Newton=True, max_iter=100, epsilon_auto=True,
-                         chi="Tsallis", q=0.5, rel_epsilon=1e-6, rcond=1.0e-8,
+                         chi="Tsallis", q=0.5, rel_epsilon=1e-6, rcond=1.0e-8, maxls=10,
                          verbose_interval=1, verbose=True);
 ```
 where $Q$ is the three-body approximation of the tensor $P$. The resulting tensor $Q$ globally optimizes the Tsallis divergence with $q=0.5$. If $q=1$, it recovers the ordinary many-body approximation, minimizing the KL-divergence. `theta` and `eta` correspond to the natural parameter and expectation parameter of the tensor $Q$, respectively. The deformed many-body approximation reduces a lot of elements in its theta representation `0` to factorize the tensor into the product form. We can confirm the resulting `theta` has a lot of `0` values by simply running `print(theta)`. 
 
-The history of the optimization can be found in `his`. If the option `Newton` is `True`, we use the natural gradient method. The function `chi_FIM` in `hessian.py` finds the Hessian matrix. We recommend using the line search in each iteration by setting `lr_search=True`. Our current line search is based on `scipy.optimize.line_search`. We also recommend setting `epsilon_auto=True` to stabilize the learning. If the optimization is unstable, please try using `Newton_solver="pinv"` and/or change the value of `rel_epsilon` and `rcond`. While our algorithm has no initial-value dependency, we can manually specify the initial parameter using `theta_0`.
+The history of the optimization can be found in `his`. If the option `Newton` is `True`, we use the natural gradient method. The function `chi_FIM` in `hessian.py` finds the Hessian matrix. We recommend using the line search in each iteration by setting `lr_search=True`. Our current line search is based on `scipy.optimize.line_search`. The option `maxls` changes the maximum number of iterations to find approcate leraning rate. We also recommend setting `epsilon_auto=True` to stabilize the learning. If the optimization is unstable, please try using `Newton_solver="pinv"` and/or change the value of `rel_epsilon` and `rcond`. While our algorithm has no initial-value dependency, we can manually specify the initial parameter using `theta_0`.
 
 We can freely model the interaction using the list of $D$ binary vectors `intracts`, where $D$ is the number of orders of the input tensor. The number of elements in the $n$-th binary vector is the combination of $n$ items taken $D$ at a time. We support $D=4$ below. The following is an example of a many-body approach where the active interaction is specified by `intracts`.
 
@@ -143,6 +143,44 @@ P_{ijkl} \simeq Q_{ijkl} = X_{ik} \circledast Y_{ijk} \circledast Z_l.
 \end{align}
 $$
 
+# Examples of deformed low-rank approximation.
+
+For a given tensor $P$, its deformed rank-R approximation is defined as 
+
+$$
+\begin{align}
+P_{ijk} \simeq Q_{ijk} &= \sum_{r=1}^R X_{ir}^{(1)} \circledast X_{jr}^{(2)} \circledast X_{kr}^{(3)} \\
+\end{align}
+$$
+
+where the approximation is the sense of corresponding $\chi$-divergence $D\_{\chi}[P,Q]$. It recovers traditional CP decomposition, minimizing the KL-divergence when $\chi(x)=x$. 
+Currently, our optimization based on the $em$-algorithm supports only Tsallis-deformed rank-R approximation. Generalizing to any $\chi$-function is future work. We emphasize that deformed low-rank approximation is still a non-convex optimization problem, which has an initial value dependence, while deformed many-body approximation is a convex optimization problem. Let us run our algorithm
+
+
+```python
+# For random input tensor
+N = 8
+P = utils_test.generate_low_rank_tensor( (N,N. N), 10, seed=None)
+P = P / np.sum(P)
+drank = 5
+
+import sys
+sys.path.append("../src/")
+from emproject import LRA
+
+# Run em-based deformed-low-rank approximation
+q = 0.5
+Q, his = LRA(P, drank, q, method="Newton", 
+                          verbose_inner=False, 
+                          verbose_interval_inner=100,
+                          lr_search=True,
+                          max_iter_inner=100,
+                          max_iter_outer=100, 
+                          use_prev_theta=False,
+                          tol_outer=1.0e-5);
+```
+
+While the e-step is performed by closed-form updates, the m-step runs a deformed many-body approximation. If you set `method="Newton"`, each m-step conduct Natural gradient based optimization. The resulting tensor `Q` is a deformed rank-5 tensor. 
 
 # Citation
 
