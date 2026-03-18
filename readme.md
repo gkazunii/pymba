@@ -185,7 +185,7 @@ Q, his = LRA(P, drank, q, method="Newton",
 
 While the e-step is performed by closed-form updates, the m-step runs a deformed many-body approximation. If you set `method="Newton"`, each m-step conduct Natural gradient based optimization. The resulting tensor `Q` is a deformed rank-5 tensor. 
 
-# Citation
+## Citation
 
 If you use this source code in a scientific publication, please consider citing the following papers:
 
@@ -211,7 +211,7 @@ If you use this source code in a scientific publication, please consider citing 
     Year = {2026}}
 ```
 
-# Further readings
+## Further readings
 
 - Convex Manifold Approximation for Tensors [[Thesis]](https://ir.soken.ac.jp/records/6661)
 - How to choose interaction automatically? [[arXiv]](https://arxiv.org/pdf/2410.11964) 
@@ -219,7 +219,7 @@ If you use this source code in a scientific publication, please consider citing 
 - Relationship between many-body approximation and low-rank approximation [[arxiv]](https://arxiv.org/abs/2405.18220)
 - Coordinate Descent Method for Log-linear Model on Posets [[Paper]](https://ieeexplore.ieee.org/abstract/document/9260027)
 
-# Links to other packages
+## Links to other packages
 
 Many-body approximation
 - [Python implementation](https://github.com/kojima-r/pyLegendreDecomposition)
@@ -230,7 +230,7 @@ Legendre decomposition
 - [C++ implementation](https://github.com/mahito-sugiyama/Legendre-decomposition)
 - [Python implementation](https://github.com/Yhkwkm/legendre-decomposition-python)
 
-# Acknowledgement
+## Acknowledgement
 This work was supported by the Danish Data Science Academy, which is funded by the Novo Nordisk Foundation, Grant Number NNF21SA0069429.
 
 <div align="left">
@@ -240,3 +240,6 @@ This work was supported by the Danish Data Science Academy, which is funded by t
     width="280">
 </div>
 
+## License
+
+This source code is released under the MIT License.
