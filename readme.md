@@ -230,3 +230,10 @@ Legendre decomposition
 # Acknowledgement
 This work was supported by the Danish Data Science Academy, which is funded by the Novo Nordisk Foundation, Grant Number NNF21SA0069429.
 
+<div align="left">
+  <img
+    src="https://github.com/user-attachments/assets/68a26709-6be6-4068-a326-464845326c73"
+    alt="Image"
+    width="280">
+</div>
+
