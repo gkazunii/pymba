@@ -49,7 +49,7 @@ The parameter $q$ distorts the coordinate system, transforming the Tsallis diver
 For any $\chi$ function, the correspoiding $\chi$-divergecen 
 
 $$
-D\_\chi[P,Q] = \sum_{ijkl} \tilde{\chi}[P_{ijkl}] \big( \log\_{\chi}(P_{ijkl}) - \log\_\chi(Q_{ijkl}) \big)
+D\_\chi[P,Q] = \sum_{ijkl} \tilde{\chi}[P_{ijkl}] \big( \log\_{\chi}(P_{ijkl}) - \log\_\chi(Q_{ijkl}) \big),
 $$
 
 where the deformed logarithm function and escort distribution $\tilde{\chi}[\cdot]$ is defined as
@@ -165,7 +165,7 @@ Currently, our optimization based on the $em$-algorithm supports only Tsallis-de
 ```python
 # For random input tensor
 N = 8
-P = utils_test.generate_low_rank_tensor( (N,N. N), 10, seed=None)
+P = utils_test.generate_low_rank_tensor( (N,N,N), 10, seed=None)
 P = P / np.sum(P)
 drank = 5
 
