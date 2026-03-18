@@ -116,7 +116,7 @@ Then, its three-body approximation can be given as follows:
 from mproject import MBA
 body = 3
 Q, theta, eta, his = MBA(P, body, lr_search=True, Newton=True, max_iter=100, epsilon_auto=True,
-                         chi="Tsallis", q=0.5, 
+                         chi="Tsallis", q=0.5, rel_epsilon=1e-6, rcond=1.0e-8,
                          verbose_interval=1, verbose=True);
 ```
 where $Q$ is the three-body approximation of the tensor $P$. The resulting tensor $Q$ globally optimizes the Tsallis divergence with $q=0.5$. If $q=1$, it recovers the ordinary many-body approximation, minimizing the KL-divergence. `theta` and `eta` correspond to the natural parameter and expectation parameter of the tensor $Q$, respectively. The deformed many-body approximation reduces a lot of elements in its theta representation `0` to factorize the tensor into the product form. We can confirm the resulting `theta` has a lot of `0` values by simply running `print(theta)`. 
