@@ -53,7 +53,7 @@ $$
 where the deformed logarithm function and escort distribution $\tilde{\chi}[\cdot]$ is defined as
 
 $$
-\log\_{\chi}(t) = \int_{0}^t \frac{ds}{\chi(s)}, \quad \tilde{\chi}[P_{ijkl}] = \frac{\chi[P_{ijkl}]}{\sum_{ijkl} \chi[P_{ijkl}]},
+\log\_{\chi}(t) = \int_{1}^t \frac{ds}{\chi(s)}, \quad \tilde{\chi}[P_{ijkl}] = \frac{\chi[P_{ijkl}]}{\sum_{ijkl} \chi[P_{ijkl}]},
 $$
 
 respectvliy. Thus, the deformed many-body approximation has no initial-value dependence. Again, the $\chi$-divergence recovers the KL-divergence if $\chi(t)=t$. The implementation of the deformed logarithm and $\chi$-divergence can be found in `chi_logexp.py` and `divergecen.py`.
