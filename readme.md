@@ -42,6 +42,21 @@ $$
 
 The parameter $q$ distorts the coordinate system, transforming the Tsallis divergence minimization into a convex optimization problem that eliminates the local minimum issue. Please note that one-body approximation with $\chi(x)=x$ (Tsallis deformation with $q=1$) recovers ordinary rank-1 approximation. Please refer to the paper for more details with other examples of deformation $\chi(x) = x / (cosh(\kappa \log x))$, called Kaniadakis-deformation with hyper-parameter $\kappa$.
 
+### Global optimality of the deformed many-body approximation
+
+For any $\chi$ function, the correspoiding $\chi$-divergecen 
+
+$$
+D\_\chi[P,Q] = \sum_{ijkl} \tilde{\chi}[P_{ijkl}] \big( \log\_{\chi}(P_{ijkl}) - \log\_\chi(Q_{ijkl}) \big)
+$$
+
+where the deformed logarithm function and escort distribution $\tilde{\chi}[\cdot]$ is defined as
+
+$$
+\log\_{\chi}(t) = \int_{0}^t \frac{ds}{\chi(s)}, \quad \tilde{\chi}[P_{ijkl}] = \frac{\chi[P_{ijkl}]}{\sum_{ijkl} \chi[P_{ijkl}]},
+$$
+
+respectvliy. Thus, the deformed many-body approximation has no initial-value dependence. Again, the $\chi$-divergence recovers the KL-divergence if $\chi(t)=t$.
 
 
 # Dual coordinate system for non-negative tensors
@@ -89,12 +104,13 @@ P = P / np.sum(P)
 
 Then, its three-body approximation can be given as follows:
 ```python
+from mproject import MBA
 body = 3
 Q, theta, eta, his = MBA(P, body, lr_search=True, Newton=True, max_iter=100, epsilon_auto=True,
                          chi="Tsallis", q=0.5, 
                          verbose_interval=1, verbose=True);
 ```
-where $Q$ is the three-body approximation of the tensor $P$. The resulting tensor $Q$ globally optimizes the Tsallis divergence with $q$. If $q=1$, it recovers the ordinary many-body approximation, minimizing the KL-divergence. `theta` and `eta` correspond to the natural parameter and expectation parameter of the tensor $Q$, respectively. The history of the optimization can be found in `his`.
+where $Q$ is the three-body approximation of the tensor $P$. The resulting tensor $Q$ globally optimizes the Tsallis divergence with $q$. If $q=1$, it recovers the ordinary many-body approximation, minimizing the KL-divergence. `theta` and `eta` correspond to the natural parameter and expectation parameter of the tensor $Q$, respectively. The history of the optimization can be found in `his`. If the option `Newton` is `True`, we use the natural gradient method. We recommend using the line search in each iteration by setting `lr_search=True`. Our current line search is based on `scipy.optimize.line_search`. We also recommend setting `epsilon_auto=True` for dumping. If the optimization is unstable, please try to use `Newton_solver="pinv"`
 
 
 We can freely model the interaction using the list of $D$ binary vectors `intracts`, where $D$ is the number of orders of the input tensor. The number of elements in the $n$-th binary vector is the combination of $n$ items taken $D$ at a time. We support $D=4$ below. The following is an example of a many-body approach where the active interaction is specified by `intracts`.
@@ -113,7 +129,7 @@ The fast binary vector `[1,1,1,1]` means all one-body interactions are activated
 
 $$
 \begin{align}
-P_{ijkl} \simeq Q_{ijkl} = X_{ik}Y_{ijk}Z_l.
+P_{ijkl} \simeq Q_{ijkl} = X_{ik} \circledast Y_{ijk} \circledast Z_l.
 \end{align}
 $$
 
