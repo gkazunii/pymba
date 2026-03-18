@@ -40,7 +40,7 @@ $$
 D_q[P,Q] = \frac{1}{1-q} \frac{1}{\sum_{ijkl} P_{ijkl}^q} \big( 1 - \sum_{ijkl} P\_{ijkl}^{q}Q_{ijkl}^{1-q} \big) 
 $$
 
-The parameter $q$ distorts the coordinate system, transforming the Tsallis divergence minimization into a convex optimization problem that eliminates the local minimum issue. In addition, a smaller $q$ value makes the model robust to the noise and outliers. We note that one-body approximation with $\chi(x)=x$ (Tsallis deformation with $q=1$) recovers ordinary rank-1 approximation. Please refer to the paper for more details with other examples of deformation $\chi(x) = x / (cosh(\kappa \log x))$, called Kaniadakis-deformation with hyper-parameter $\kappa$.
+The parameter $q$ distorts the coordinate system, transforming the Tsallis divergence minimization into a convex optimization problem that eliminates the local minimum issue. In addition, a smaller $q$ value makes the model robust to the noise and outliers. We note that one-body approximation with $\chi(x)=x$ (Tsallis deformation with $q=1$) recovers ordinary rank-1 approximation. Please refer to the paper for more details with other examples of deformation $\chi(x) = x / (cosh(\kappa \log x))$, called Kaniadakis-deformation with hyper-parameter $\kappa$. 
 
 ### Global optimality of the deformed many-body approximation
 
@@ -56,7 +56,7 @@ $$
 \log\_{\chi}(t) = \int_{0}^t \frac{ds}{\chi(s)}, \quad \tilde{\chi}[P_{ijkl}] = \frac{\chi[P_{ijkl}]}{\sum_{ijkl} \chi[P_{ijkl}]},
 $$
 
-respectvliy. Thus, the deformed many-body approximation has no initial-value dependence. Again, the $\chi$-divergence recovers the KL-divergence if $\chi(t)=t$.
+respectvliy. Thus, the deformed many-body approximation has no initial-value dependence. Again, the $\chi$-divergence recovers the KL-divergence if $\chi(t)=t$. The implementation of the deformed logarithm and $\chi$-divergence can be found in `chi_logexp.py` and `divergecen.py`.
 
 
 # Dual coordinate system for non-negative tensors
@@ -119,9 +119,9 @@ Q, theta, eta, his = MBA(P, body, lr_search=True, Newton=True, max_iter=100, eps
                          chi="Tsallis", q=0.5, 
                          verbose_interval=1, verbose=True);
 ```
-where $Q$ is the three-body approximation of the tensor $P$. The resulting tensor $Q$ globally optimizes the Tsallis divergence with $q=0.5$. If $q=1$, it recovers the ordinary many-body approximation, minimizing the KL-divergence. `theta` and `eta` correspond to the natural parameter and expectation parameter of the tensor $Q$, respectively. Deformed many-body approximation reduces a lot of elements in its theta representation `0` to factorize the tensor into the product form. We can confirm the resulting `theta` has a lot of `0` values by `print(theta)`. 
+where $Q$ is the three-body approximation of the tensor $P$. The resulting tensor $Q$ globally optimizes the Tsallis divergence with $q=0.5$. If $q=1$, it recovers the ordinary many-body approximation, minimizing the KL-divergence. `theta` and `eta` correspond to the natural parameter and expectation parameter of the tensor $Q$, respectively. The deformed many-body approximation reduces a lot of elements in its theta representation `0` to factorize the tensor into the product form. We can confirm the resulting `theta` has a lot of `0` values by simply running `print(theta)`. 
 
-The history of the optimization can be found in `his`. If the option `Newton` is `True`, we use the natural gradient method. We recommend using the line search in each iteration by setting `lr_search=True`. Our current line search is based on `scipy.optimize.line_search`. We also recommend setting `epsilon_auto=True` to stabilize the learning. If the optimization is unstable, please try using `Newton_solver="pinv"` and/or change the value of `rel_epsilon` and `rcond`. While our algorithm has no initial-value dependency, we can manually specify the initial parameter using `theta_0`.
+The history of the optimization can be found in `his`. If the option `Newton` is `True`, we use the natural gradient method. The function `chi_FIM` in `hessian.py` finds the Hessian matrix. We recommend using the line search in each iteration by setting `lr_search=True`. Our current line search is based on `scipy.optimize.line_search`. We also recommend setting `epsilon_auto=True` to stabilize the learning. If the optimization is unstable, please try using `Newton_solver="pinv"` and/or change the value of `rel_epsilon` and `rcond`. While our algorithm has no initial-value dependency, we can manually specify the initial parameter using `theta_0`.
 
 We can freely model the interaction using the list of $D$ binary vectors `intracts`, where $D$ is the number of orders of the input tensor. The number of elements in the $n$-th binary vector is the combination of $n$ items taken $D$ at a time. We support $D=4$ below. The following is an example of a many-body approach where the active interaction is specified by `intracts`.
 
