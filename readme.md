@@ -179,7 +179,7 @@ Q, his = LRA(P, drank, q, method="Newton",
                           lr_search=True,
                           max_iter_inner=100,
                           max_iter_outer=100, 
-                          use_prev_theta=False,
+                          use_prev_theta=True,
                           tol_outer=1.0e-5);
 ```
 
