@@ -185,7 +185,9 @@ Q, his = LRA(P, drank, q, method="Newton",
                           tol_outer=1.0e-5);
 ```
 
-While the e-step is performed by closed-form updates, the m-step runs a deformed many-body approximation. If you set `method="Newton"`, each m-step conduct Natural gradient based optimization. The resulting tensor `Q` is a deformed rank-5 tensor. 
+While the e-step is performed by closed-form updates, the m-step runs a deformed many-body approximation. If you set `method="Newton"`, each m-step conduct Natural gradient based optimization. The resulting tensor `Q` is a deformed rank-5 tensor. As we discuss in our paper, the Tsallis deformation induces implicit regularization that prevents overfitting. 
+
+<img width="1076" height="533" alt="Image" src="https://github.com/user-attachments/assets/0b0540b2-d2a6-44c0-804f-c5f91568ab1b" />
 
 ## Citation
 
