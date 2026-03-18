@@ -210,11 +210,11 @@ If you use this source code in a scientific publication, please consider citing 
 
 # Further readings
 
-- Convex Manifold Approximation for Tensors [[Theis]](https://ir.soken.ac.jp/records/6661)
+- Convex Manifold Approximation for Tensors [[Thesis]](https://ir.soken.ac.jp/records/6661)
 - How to choose interaction automatically? [[arXiv]](https://arxiv.org/pdf/2410.11964) 
 - Blind Source Separation via Legendre Transformation [[Paper]](https://proceedings.mlr.press/v161/luo21a.html) [[Code]](https://github.com/sjmluo/IGLLM?utm_source=catalyzex.com) [[Slide]](https://github.com/sjmluo/IGLLM/blob/master/IGBSS_NeurIPS2020_Poster.pdf)
 - Relationship between many-body approximation and low-rank approximation [[arxiv]](https://arxiv.org/abs/2405.18220)
-- Coordinate Descent Method for Log-linear Model on Posets, by Hayashi, S., Sugiyama, M., & Matsushima, S. [[Paper]](https://ieeexplore.ieee.org/abstract/document/9260027)
+- Coordinate Descent Method for Log-linear Model on Posets [[Paper]](https://ieeexplore.ieee.org/abstract/document/9260027)
 
 # Links to other packages
 
