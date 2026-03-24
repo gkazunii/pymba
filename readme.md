@@ -235,7 +235,9 @@ Legendre decomposition
 - [Python implementation](https://github.com/Yhkwkm/legendre-decomposition-python)
 
 ## Acknowledgement
-This work was supported by the Danish Data Science Academy, which is funded by the Novo Nordisk Foundation, Grant Number NNF21SA0069429.
+This work was supported by 
+- the Danish Data Science Academy, which is funded by the Novo Nordisk Foundation, Grant Number NNF21SA0069429 (GK),
+- by the Novo Nordisk Foundation, Grant Number NNF23OC0083524 (MM & PT)
 
 <div align="left">
   <img
