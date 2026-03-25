@@ -46,13 +46,13 @@ The parameter $q$ distorts the coordinate system, transforming the Tsallis diver
 
 ### Global optimality of the deformed many-body approximation
 
-For any $\chi$ function, the correspoiding $\chi$-divergecen 
+For any $\chi$ function, the correspoiding $\chi$-divergecen is defined as
 
 $$
 D\_\chi[P,Q] = \sum_{ijkl} \tilde{\chi}[P_{ijkl}] \big( \log\_{\chi}(P_{ijkl}) - \log\_\chi(Q_{ijkl}) \big),
 $$
 
-where the deformed logarithm function and escort distribution $\tilde{\chi}[\cdot]$ is defined as
+where the deformed logarithm function $\log\_{\chi}$ and escort distribution $\tilde{\chi}[\cdot]$ is given as
 
 $$
 \log\_{\chi}(t) = \int_{1}^t \frac{ds}{\chi(s)}, \quad \tilde{\chi}[P_{ijkl}] = \frac{\chi[P_{ijkl}]}{\sum_{ijkl} \chi[P_{ijkl}]},
